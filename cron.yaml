@@ -1,0 +1,5 @@
+cron:
+- description: check for updates to a user's twitter status
+  url: /twitter
+  schedule: every 15 minutes
+
