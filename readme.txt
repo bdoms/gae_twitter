@@ -27,12 +27,15 @@ And then just add this to your app.yaml 'handlers' section:
       script: gaetwitter/twitter.py
       login: admin
 
-Now you just need to configure it by changing which user you want it to user.
-In config.py change the 'TWITTER_USER' variable to the screen name of the user
-you want to follow.
+Now you just need to configure it by changing which user to follow, and by
+setting up the cron job. You'll need to create or modify your project's
+cron.yaml file to do this. The included example job looks like this:
 
-You also need to add the job to your parent application's cron.yaml file. See
-the included one for an example.
+    - description: check for updates to a user's twitter status
+      url: /twitter?screen_name=twitterapi
+      schedule: every 15 minutes
+
+You can easily modify the rate at which it checks, and the screen name it uses.
 
 
 = Use =

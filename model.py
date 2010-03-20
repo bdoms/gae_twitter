@@ -1,3 +1,4 @@
+from time import mktime
 
 from google.appengine.ext import db
 
@@ -7,6 +8,10 @@ class TwitterPost(db.Model):
 
     body = db.StringProperty(required=True)
     timestamp = db.DateTimeProperty(required=True)
+
+    @property
+    def secondsSinceEpoch(self):
+        return mktime(self.timestamp.timetuple())
 
 
 # misc functions

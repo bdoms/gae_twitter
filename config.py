@@ -2,14 +2,12 @@
 
 
 # dynamically determine whether we're serving on development or production (error on the side of production)
+import os
+
 if os.environ.get('SERVER_SOFTWARE', '').startswith('Development'):
     DEBUG = True
 else:
     DEBUG = False
-
-
-# twitter configuration
-TWITTER_USER = 'twitterapi' # the user to grab updates from
 
 
 # url routes

@@ -1,5 +1,5 @@
 cron:
 - description: check for updates to a user's twitter status
-  url: /twitter
+  url: /twitter?screen_name=twitterapi
   schedule: every 15 minutes
 
