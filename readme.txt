@@ -14,7 +14,7 @@ or file a specific issue.
 
 In your pre-existing application add this project as a submodule, like so:
 
-    git submodule add git://github.com/bdoms/gaetwitter.git gaetwitter
+    git submodule add git://github.com/bdoms/gae_twitter.git gae_twitter
 
 Next, you need to initialize and update the submodule to get the data:
 
@@ -24,7 +24,7 @@ Next, you need to initialize and update the submodule to get the data:
 And then just add this to your app.yaml 'handlers' section:
 
     - url: /twitter.*
-      script: gaetwitter/twitter.py
+      script: gae_twitter/twitter.py
       login: admin
 
 Now you just need to configure it by changing which user to follow, and by
@@ -44,7 +44,7 @@ GAE Twitter just updates a single database entry with the most recent post from
 the user specified in the config.py file. To use this data, grab it from the
 model:
 
-    from gaetwitter import model
+    from gae_twitter import model
     post = model.getPost()
 
 The post object only has two properties for you to worry about:

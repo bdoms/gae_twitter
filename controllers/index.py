@@ -5,8 +5,8 @@ from google.appengine.ext import webapp
 from google.appengine.api import urlfetch
 from django.utils import simplejson
 
-from gaetwitter.config import DEBUG
-from gaetwitter import model
+from gae_twitter.config import DEBUG
+from gae_twitter import model
 
 
 class IndexController(webapp.RequestHandler):

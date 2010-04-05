@@ -3,7 +3,7 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 
-from gaetwitter.config import ROUTES
+from gae_twitter.config import ROUTES
 
 def main():
     app = application()
