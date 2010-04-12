@@ -14,7 +14,7 @@ class IndexController(webapp.RequestHandler):
     def get(self):
 
         if not DEBUG and self.request.headers.get("X-AppEngine-Cron") != "true":
-            # this request was not made by the task engine or during development, so don't do it
+            # this request was not made by the task engine nor during development, so don't do it
             return
 
         screen_name = self.request.get("screen_name")
@@ -33,6 +33,8 @@ class IndexController(webapp.RequestHandler):
                     # get data from the most recent one
                     status = statuses[0]
                     body = status["text"]
+                    body = model.linkURLs(body)
+                    body = model.linkAts(body)
                     timestamp = status["created_at"]
                     timestamp = datetime.strptime(timestamp, "%a %b %d %H:%M:%S +0000 %Y")
 
