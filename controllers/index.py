@@ -35,6 +35,7 @@ class IndexController(webapp.RequestHandler):
                     body = status["text"]
                     body = model.linkURLs(body)
                     body = model.linkAts(body)
+                    body = model.linkHashes(body)
                     timestamp = status["created_at"]
                     timestamp = datetime.strptime(timestamp, "%a %b %d %H:%M:%S +0000 %Y")
 

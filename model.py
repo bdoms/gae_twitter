@@ -34,10 +34,22 @@ URL_RE = re.compile(r'''
     ''', re.I | re.VERBOSE)
 
 def linkURLs(string):
-    return URL_RE.sub(r'<a href="\1" target="_blank">\1</a>', string)
+    match = re.search(URL_RE, string)
+    if match:
+        url = match.group(1)
+        # fix to remove a trailing parenthesis if one precedes the url
+        if string[string.index(url) - 1] == "(" and url.endswith(")"):
+            url = url[:-1]
+        string = string.replace(url, '<a href="' + url + '" target="_blank" rel="nofollow">' + url + '</a>')
+    return string
 
 AT_RE = re.compile(r'@([\w_]+)')
 
 def linkAts(string):
-    return AT_RE.sub(r'@<a href="http://twitter.com/\1" target="_blank">\1</a>', string)
+    return AT_RE.sub(r'@<a href="http://twitter.com/\1" target="_blank" rel="nofollow">\1</a>', string)
+
+HASH_RE = re.compile(r'#([\w_]+)')
+
+def linkHashes(string):
+    return HASH_RE.sub(r'<a href="http://twitter.com/search?q=%23\1" target="_blank" rel="nofollow">#\1</a>', string)
 
