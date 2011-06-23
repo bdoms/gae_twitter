@@ -36,6 +36,7 @@ class IndexController(webapp.RequestHandler):
                     body = model.linkURLs(body)
                     body = model.linkAts(body)
                     body = model.linkHashes(body)
+                    url = "http://twitter.com/" + screen_name + "/status/" + str(status["id"])
                     timestamp = status["created_at"]
                     timestamp = datetime.strptime(timestamp, "%a %b %d %H:%M:%S +0000 %Y")
 
@@ -43,9 +44,10 @@ class IndexController(webapp.RequestHandler):
                     twitter_post = model.TwitterPost.all().get()
                     if twitter_post:
                         twitter_post.body = body
+                        twitter_post.url = url
                         twitter_post.timestamp = timestamp
                     else:
-                        twitter_post = model.TwitterPost(body=body, timestamp=timestamp)
+                        twitter_post = model.TwitterPost(body=body, url=url, timestamp=timestamp)
                     twitter_post.put()
 
         return

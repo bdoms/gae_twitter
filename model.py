@@ -8,6 +8,7 @@ from google.appengine.ext import db
 class TwitterPost(db.Model):
 
     body = db.StringProperty(required=True)
+    url = db.StringProperty(required=True)
     timestamp = db.DateTimeProperty(required=True)
 
     @property
